@@ -1,0 +1,5 @@
+builds/*
+tests/**/backend.tf
+tests/**/.secrets.env
+dist
+*.env

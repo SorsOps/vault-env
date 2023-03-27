@@ -1,0 +1,36 @@
+secrets:
+  version: 1.0.0
+  output: ./.secrets.env
+  collections:
+    - name: all
+      values: 
+        - engine: kv-v2
+          root: secret
+          namespace: admin
+          path: dev/config/backstage
+
+
+# secrets:
+#   version: 1.0.0
+#   output: ./.secrets.env
+#   collections:
+#     - name: test-aws
+#       output: ./.secrets.env
+#       values: 
+#         - engine: aws
+#           namespace: admin
+#           path: /aws/dev/creds/power-user
+#     - name: test-kv
+#       values: 
+#         - engine: kv-v2
+#           root: secret
+#           path: foo
+#           version: 1
+#           namespace: admin
+#           field: bar
+#           aliases: 
+#             - field: bar
+#               name: ${TEST_VAL}-val
+#         - engine: kv-v2
+#           root: secret
+#           path: foo

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  build:
+    image: goreleaser/goreleaser
+    volumes:
+      - .:/app
+    command: build --clean --skip-validate
+    working_dir: /app
+    environment:
+      - SEMVER_VERSION
+  lint:
+    image: golangci/golangci-lint:v1.52.2
+    volumes:
+      - .:/app
+    command: golangci-lint run -v
+    working_dir: /app
