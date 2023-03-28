@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"sorsops/vault-env/v2/models"
+	"sorsops/vault-env/v2/models/constants"
 
 	"github.com/hashicorp/vault/api"
 	log "github.com/sirupsen/logrus"
@@ -272,10 +273,13 @@ func RetrieveSecrets(ctx *models.SecretCtx) error {
 		} else {
 
 			var pathVal string
-			if (v.config.File != nil) && (len(*v.config.File) > 0) {
+
+			if len(ctx.Output) > 0 {
+				pathVal = ctx.Output
+			} else if (v.config.File != nil) && (len(*v.config.File) > 0) {
 				pathVal = *v.config.File
 			} else {
-				pathVal = ctx.DefaultOutput
+				pathVal = constants.DefaultDotEnvOutput
 			}
 
 			if !filepath.IsAbs(pathVal) {

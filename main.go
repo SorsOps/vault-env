@@ -50,7 +50,7 @@ func main() {
 			},
 			&cli.StringFlag{
 				Name:        "output",
-				Value:       "./.vault-env.env",
+				Value:       "",
 				Usage:       "the default file output",
 				Destination: &output,
 			},
@@ -91,12 +91,12 @@ func main() {
 			}
 
 			err := secrets.RetrieveSecrets(&models.SecretCtx{
-				VaultAddress:  vaultAddress,
-				InputFile:     input,
-				Collection:    collection,
-				DefaultToken:  defaultToken,
-				DefaultOutput: output,
-				Format:        format,
+				VaultAddress: vaultAddress,
+				InputFile:    input,
+				Collection:   collection,
+				DefaultToken: defaultToken,
+				Output:       output,
+				Format:       format,
 			})
 			if err != nil {
 				return err

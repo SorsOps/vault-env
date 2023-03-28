@@ -3,9 +3,6 @@ package models
 import (
 	"errors"
 	"fmt"
-
-	"sorsops/vault-env/v2/models/constants"
-	"sorsops/vault-env/v2/utils/ref"
 )
 
 type SecretType string
@@ -75,9 +72,7 @@ func initCollection(p *Secrets, collections []Collection) ([]Collection, error) 
 func (p *Secrets) InitDefaults() (*Secrets, error) {
 
 	var output *string
-	if p.Output == nil {
-		output = ref.String(constants.DefaultSecretsOutput)
-	} else {
+	if p.Output != nil {
 		output = p.Output
 	}
 
