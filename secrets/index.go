@@ -272,7 +272,7 @@ func RetrieveSecrets(ctx *models.SecretCtx) error {
 		} else {
 
 			var pathVal string
-			if (v.config.File == nil) || (len(*v.config.File) == 0) {
+			if (v.config.File != nil) && (len(*v.config.File) > 0) {
 				pathVal = *v.config.File
 			} else {
 				pathVal = ctx.DefaultOutput
