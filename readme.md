@@ -90,26 +90,17 @@ ginkgo -r --tags=unit_test
 
 ## Build
 
-This should produce an alpine binary
+This should produce binaries through the use of goreleaser at `./dist`
 
 ```bash
-docker-compose run app
-```
-
-### Compression
-
-After running the build step
-
-```bash
-docker-compose run app upx --brute ./builds/alpine/compiled
+docker-compose run build
 ```
 
 ## Linting
 
 ```bash
-docker-compose run app golangci-lint run
+docker-compose run lint
 ```
-
 
 ## Useful tools 
 
