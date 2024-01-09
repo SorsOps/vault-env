@@ -4,7 +4,7 @@ This tool is used to handle automatic retrieval of secrets from Hashicorp vault
 
 It uses a simple yml config to handle pulling the desired secrets.
 
-Let's assume the following
+Let's assume the following in a `.vault-env.yml` file
 
 ```yml
 secrets:
@@ -12,7 +12,6 @@ secrets:
   collections:
     - name: test-aws
       output: ./.secrets.bat
-      format: WINDOWS
       values: 
         - engine: aws
           namespace: admin
@@ -24,9 +23,9 @@ secrets:
           root: kv-v2
           namespace: admin
           path: test/secret
-          field: foo
+          field: bar
           aliases: 
-            - field: foo
+            - field: bar
               name: ${TEST_VAL}-val
         - engine: kv-v2
           root: kv-v2
@@ -40,7 +39,7 @@ MY_VAL-val="baz"
 BAR="baz"
 ```
 
-Assuming `TEST_VAL=MY_VAL` for the aliasing and the test/secret having the following shape 
+This assumes `TEST_VAL=MY_VAL` for the aliasing and the `test/secret` having the following shape 
 
 ```
 {
@@ -58,7 +57,7 @@ or
 source ./.secrets.env
 ```
 
-For windows systems you could do the following `vault-env --collection test-kv --output ./env.bat --format WINDOWS` to generate a bat file to set env vars
+For windows systems you could do the following `vault-env --collection test-kv --output ./env.bat --format WINDOWS` to generate a bat file to set env vars and then execute it 
 
 ### Note 
 

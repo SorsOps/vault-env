@@ -26,7 +26,11 @@ type SecretsRoot struct {
 type Secrets struct {
 	Version    *string      `yaml:"version"`
 	Collection []Collection `yaml:"collections,omitempty"`
-	Output     *string      `yaml:"output,omitempty"`
+	/**
+	 * Output is the default output file for all secrets
+	 * If a secret has a file specified, it will override this value
+	 */
+	Output *string `yaml:"output,omitempty"`
 }
 
 type Collection struct {
@@ -48,7 +52,11 @@ type Secret struct {
 	Type SecretType `yaml:"type,omitempty"`
 	File *string    `yaml:"file,omitempty"`
 	//Only usable by kv-v2
-	Version   *int    `yaml:"version,omitempty"`
+	Version *int `yaml:"version,omitempty"`
+	/**
+	 * Aliases are used to map a secret to a different name
+	 * IE if you have a secret named `password` but want to use it as `PASSWORD`
+	 */
 	Aliases   []Alias `yaml:"aliases,omitempty"`
 	Namespace *string `yaml:"namespace,omitempty"`
 }
